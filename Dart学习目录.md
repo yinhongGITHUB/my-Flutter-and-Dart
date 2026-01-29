@@ -16,7 +16,9 @@
 var name = 'Dart'; // 自动推断为String
 dynamic anything = 123; // 可变类型
 final age = 18; // 运行时常量
+final：运行时常量。变量只能被赋值一次，但值是在程序运行时确定的。例如：final age = DateTime.now().year;。
 const pi = 3.14; // 编译时常量
+const：编译时常量。值在编译时就必须确定，且不可变。只能用于字面量或编译期可确定的表达式。例如：const pi = 3.14;。
 ```
 
 注意：const 比 final 更严格，const 只能修饰不可变对象。
