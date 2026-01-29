@@ -27,11 +27,21 @@ const：编译时常量。值在编译时就必须确定，且不可变。只能
 
 Dart 是强类型语言，常用类型有：
 
-- int（整数）、double（浮点数）、num（数字类型父类）
-- String（字符串）、bool（布尔）
-- List（有序集合/数组）、Map（键值对集合/字典）、Set（无序唯一集合）
-- Runes（Unicode 字符）、Symbol（符号）
-  示例：
+- int（整数）：如 1、-10
+- double（浮点数）：如 3.14、-0.5
+- num（数字类型父类）：可为 int 或 double
+- String（字符串）：如 'abc'、"hello"
+- bool（布尔）：true 或 false
+- List（有序集合/数组）：如 [1,2,3]
+- Map（键值对集合/字典）：如 {'a': 1}
+- Set（无序唯一集合）：如 {'a', 'b'}
+- Runes（Unicode 字符）：如 Runes('😊')
+- Symbol（符号）：如 #mySymbol
+- null（空值）：表示无值，所有类型的变量都可以为 null（可空类型需加 ?）
+
+注意：Dart 没有 JavaScript 里的 undefined，只有 null。
+
+示例：
 
 ```dart
 int a = 10;
@@ -44,6 +54,8 @@ Map<String, int> scores = {'Tom': 90};
 Set<String> tags = {'a', 'b'};
 Runes input = Runes('😊');
 Symbol sym = #mySymbol;
+null n = null; // null 类型
+String? maybe = null; // 可空类型
 ```
 
 ### 3. 字符串插值与多行字符串
@@ -63,25 +75,81 @@ String multi = '''多行
 包括：
 
 - 算术：+ - \* / ~/ %
+  ```dart
+  int a = 7, b = 3;
+  print(a + b); // 10
+  print(a - b); // 4
+  print(a * b); // 21
+  print(a / b); // 2.333...
+  print(a ~/ b); // 2
+  print(a % b); // 1
+  ```
 - 关系：> < >= <= == !=
+  ```dart
+  print(a > b); // true
+  print(a < b); // false
+  print(a >= b); // true
+  print(a <= b); // false
+  print(a == b); // false
+  print(a != b); // true
+  ```
 - 逻辑：&& || !
+  ```dart
+  bool x = true, y = false;
+  print(x && y); // false
+  print(x || y); // true
+  print(!x); // false
+  ```
 - 位运算：& | ^ ~ << >>
+  ```dart
+  int m = 6, n = 3; // 6: 110, 3: 011
+  print(m & n); // 2 (010)
+  print(m | n); // 7 (111)
+  print(m ^ n); // 5 (101)
+  print(~m); // -7
+  print(m << 1); // 12
+  print(m >> 1); // 3
+  ```
 - 类型判断：is、as
+  ```dart
+  var s = 'hello';
+  print(s is String); // true
+  print(s is int); // false
+  dynamic d = 'abc';
+  String t = d as String;
+  ```
 - 赋值：=、??=、+=、-= 等
+  ```dart
+  int v;
+  v = 5;
+  v += 2; // 7
+  v -= 3; // 4
+  int? w;
+  w ??= 10; // w 为 null 时赋值 10
+  ```
 - 条件：?:
+  ```dart
+  int age = 20;
+  String res = age >= 18 ? 'adult' : 'child';
+  print(res); // adult
+  ```
 - 级联：..（连续操作同一对象）
+  ```dart
+  var list = []
+  	..add(1)
+  	..add(2)
+  	..add(3);
+  print(list); // [1, 2, 3]
+  ```
 - 空安全：??（空值合并）、?.（安全访问）、!（断言非空）
-  示例：
-
-```dart
-int c = a + 2;
-bool isAdult = age >= 18;
-var result = flag ? 'yes' : 'no';
-var d = null;
-print(d ?? 'default');
-List<String>? list;
-print(list?.length); // 安全访问
-```
+  ```dart
+  String? name;
+  print(name ?? 'default'); // default
+  List<String>? arr;
+  print(arr?.length); // null
+  String? s2;
+  print(s2!.length); // 断言非空，若为 null 则抛异常
+  ```
 
 ### 5. 条件语句
 
