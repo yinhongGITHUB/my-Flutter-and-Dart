@@ -114,10 +114,11 @@ String multi = '''多行
 - 类型判断：is、as
   ```dart
   var s = 'hello';
-  print(s is String); // true
-  print(s is int); // false
+  // is 用于判断对象类型，返回布尔值；as 用于类型转换（类型断言），转换失败会抛异常。
+  print(s is String); // true   判断 s 是否为 String 类型
+  print(s is int);    // false  判断 s 是否为 int 类型
   dynamic d = 'abc';
-  String t = d as String;
+  String t = d as String; // as 用于将 d 转为 String 类型，若 d 不是 String 会抛异常
   ```
 - 赋值：=、??=、+=、-= 等
   ```dart
